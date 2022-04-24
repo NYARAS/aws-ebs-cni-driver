@@ -44,8 +44,8 @@ To create the cluster:
 
 Credits
 --------
-Developed by `Calvine Otieno`_ | developer@calvineotieno.com
+Developed by `Developer Calvine Otieno`_ | developer@calvineotieno.com
 
+.. _Developer Calvine Otieno: https://about.calvineotieno.com/
 .. _Configuring ssh: https://docs.gitlab.com/ee/ssh/
 .. _Installing eksctl: https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html
-
