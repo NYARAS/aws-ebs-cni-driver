@@ -24,7 +24,7 @@ managedNodeGroups:
     desiredCapacity: 2
     ssh:
       allow: true
-      publicKeyName: recipe-app-api-devops-bastion
+      publicKeyName: "<YOUR_KEY_NAME>"
     labels: {role: mngworker}
     iam:
       withAddonPolicies:
