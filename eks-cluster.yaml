@@ -1,0 +1,42 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: thanosdemo
+  region: eu-west-1
+  version: '1.22' # the version of eks, update this to the version you want want run
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: monitoring
+        namespace: monitoring
+        labels: {aws-usage: "application"}
+addons:
+  - name: aws-ebs-csi-driver
+    version: v1.5.2-eksbuild.1
+    attachPolicyARNs:
+    - arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy
+
+managedNodeGroups:
+  - name: ng0
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 2
+    ssh:
+      allow: true
+      publicKeyName: recipe-app-api-devops-bastion
+    labels: {role: mngworker}
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
+        certManager: true
+        ebs: true
+        albIngress: true
+        xRay: true
+        cloudWatch: true
+        appMesh: true
+cloudWatch:
+  clusterLogging:
+   enableTypes: ["*"]
